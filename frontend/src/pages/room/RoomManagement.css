@@ -1,0 +1,59 @@
+/* ปรับขนาดของ container ให้เหมาะสมกับหน้าจอ */
+.room-management-container {
+  width: 100%; /* ใช้ 100% เพื่อให้ขนาดเต็ม */
+  max-width: 900px; /* กำหนดขนาดสูงสุดของ container */
+  height: auto;
+  background-color: #f4f6f8;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px auto; /* ให้มันอยู่กลางหน้าจอ */
+  box-sizing: border-box; /* ทำให้ padding ไม่กระทบกับขนาดรวม */
+}
+
+/* ปรับขนาดของตาราง */
+.room-table {
+  background-color: white;
+  border-radius: 8px;
+  padding: 10px;
+  width: 100%; /* ให้ตารางขยายเต็ม */
+}
+
+/* ปรับปุ่มให้มีระยะห่าง */
+.action-buttons button {
+  margin-right: 8px;
+}
+
+/* ปรับ Dialog */
+.room-dialog {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* เพิ่ม media query สำหรับหน้าจอเล็ก */
+@media (max-width: 768px) {
+  .room-management-container {
+    padding: 20px; /* ลด padding ในหน้าจอเล็ก */
+  }
+  .room-table {
+    padding: 8px; /* ลด padding ของตาราง */
+  }
+  .room-management-title {
+    font-size: 22px; /* ลดขนาดฟอนต์หัวข้อ */
+  }
+}
+
+/* เพิ่ม media query สำหรับโทรศัพท์มือถือ */
+@media (max-width: 480px) {
+  .room-management-container {
+    padding: 10px; /* ลด padding ในหน้าจอมือถือ */
+  }
+  .room-table {
+    padding: 6px; /* ลด padding ของตาราง */
+  }
+  .room-management-title {
+    font-size: 18px; /* ลดขนาดฟอนต์หัวข้อ */
+  }
+}

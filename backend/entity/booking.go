@@ -8,8 +8,8 @@ import (
 
 type Booking struct {
 	gorm.Model
-	CustomerID  uint      // FK: refers to Customer.ID
-	Customer    Customer  `gorm:"foreignKey:CustomerID"`
+	UserID  uint      // FK: refers to Customer.ID
+	User    User  `gorm:"foreignKey:UserID"`
 	RoomID      uint      // FK: refers to Room.ID
 	Room        Room      `gorm:"foreignKey:RoomID"`
 	PromotionID *uint     // FK: refers to Promotion.ID

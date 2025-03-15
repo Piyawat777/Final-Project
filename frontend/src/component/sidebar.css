@@ -1,0 +1,146 @@
+/* Sidebar Container */
+.sidebar-container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar Style */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 260px;
+  background: linear-gradient(180deg, #0c1c3d, #142850); /* ใช้ gradient น้ำเงินเข้ม */
+  color: white;
+  z-index: 1000;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.15);
+  padding-top: 20px;
+  transition: width 0.3s ease-in-out;
+  overflow: visible; /* เปลี่ยนจาก hidden เป็น visible */
+}
+
+/* Sidebar Logo */
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #f4b400; /* สีทอง */
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  white-space: nowrap; /* ป้องกันข้อความตกบรรทัด */
+  overflow: visible; /* เปลี่ยนจาก hidden เป็น visible */
+  text-overflow: ellipsis;
+  word-wrap: break-word; /* ป้องกันไม่ให้ข้อความยาวเกินไป */
+}
+
+/* Sidebar Menu */
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+/* Sidebar Menu Item */
+.sidebar-menu li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 15px; /* ปรับ padding ให้พอดี */
+  font-size: 16px;
+  white-space: nowrap; /* ป้องกันข้อความตกบรรทัด */
+  overflow: visible; /* เปลี่ยนจาก hidden เป็น visible */
+  text-overflow: ellipsis; /* แสดง ... ถ้าข้อความยาวเกิน */
+  word-wrap: break-word; /* ป้องกันไม่ให้ข้อความยาวเกินขอบ */
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Icon and Text inside Menu */
+.sidebar-menu li i {
+  flex-shrink: 0; /* ป้องกัน icon บีบตัวอักษร */
+  font-size: px;
+  margin-right: 10px; /* ลดระยะห่างของไอคอน */
+  color: #f4b400;
+}
+
+/* Hover and Active Effects */
+.sidebar-menu li:hover,
+.sidebar-menu .active {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-left: 5px solid #f4b400;
+}
+
+/* ปรับ Sidebar เมื่อถูกย่อ */
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.sidebar.collapsed .sidebar-logo {
+  font-size: 18px;
+}
+
+.sidebar.collapsed .sidebar-menu li {
+  justify-content: left;
+  padding: 12px 10px;
+}
+
+.sidebar.collapsed .sidebar-menu li i {
+  margin-right: 0;
+}
+
+.sidebar.collapsed .sidebar-menu li span {
+  display: none;
+}
+
+/* Main Content (เพื่อเว้นที่สำหรับ Sidebar) */
+.main-content {
+  margin-left: 260px;
+  padding: 20px;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+.sidebar.collapsed + .main-content {
+  margin-left: 80px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .sidebar-logo {
+    font-size: 18px;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .sidebar-menu li {
+    font-size: 14px;
+    padding: 10px 12px;
+    justify-content: center;
+  }
+
+  .main-content {
+    margin-left: 200px;
+  }
+
+  .sidebar.collapsed {
+    width: 70px;
+  }
+
+  .sidebar.collapsed + .main-content {
+    margin-left: 70px;
+  }
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}

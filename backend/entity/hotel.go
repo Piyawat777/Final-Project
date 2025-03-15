@@ -8,15 +8,10 @@ import (
 // Hotel represents a hotel entity.
 type Hotel struct {
 	gorm.Model
-	Name        string      // Hotel name
-	Address     string      // Street address
-	City        string
-	State       string
-	Phone       string
-	Email       string
-	Website     string
-	Description string
-	Rating      float32
+	Name     string `gorm:"not null"`
+	Location string
+	Phone    string
+	Email    string
 	// One hotel has many rooms.
 	Rooms []Room `gorm:"foreignKey:HotelID"`
 	// Many-to-many relationship with Amenity.

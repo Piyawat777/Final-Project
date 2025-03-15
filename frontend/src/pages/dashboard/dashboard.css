@@ -1,0 +1,149 @@
+/* ป้องกันการเลื่อนแนวนอน */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  touch-action: manipulation; /* ป้องกันการซูม pinch-to-zoom */
+}
+
+/* ป้องกันการย่อ-ขยายหน้าจอ (ต้องใส่ meta viewport ใน HTML ด้วย) */
+@viewport {
+  width: device-width;
+  zoom: 1.0;
+  user-zoom: fixed;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Centering the main dashboard content */
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  width: 50%; /* ปรับขนาดให้พอดี */
+  max-width: 800px; /* ป้องกันการขยายเกินไป */
+  text-align: center;
+}
+
+/* Header Styles */
+.dashboard-header {
+  width: 100%;
+  padding: 15px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Dashboard Title */
+.dashboard-title {
+  margin: 0;
+  font-size: 18px;
+}
+
+/* Switch and Avatar Area */
+.dashboard-header-right {
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-header-right .ant-switch {
+  margin-left: 8px;
+}
+
+/* Dashboard Stats Grid */
+.dashboard-stats-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px; /* ปรับระยะห่างให้ไม่ติดกัน */
+  width: 100%;
+}
+
+/* Dashboard Stat Cards */
+.dashboard-stat-card {
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  background: white;
+  text-align: center;
+  width: 240px; /* ปรับขนาดให้เหมาะสม */
+  min-width: 200px;
+  max-width: 250px;
+}
+
+/* Chart and Search Cards */
+.dashboard-chart-card,
+.dashboard-search-card {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Dashboard Card Title */
+.dashboard-card-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #000;
+}
+
+/* Empty State */
+.dashboard-empty-state {
+  text-align: center;
+  color: #888;
+}
+
+/* Margin Spacing */
+.dashboard-row-margin {
+  margin-top: 15px;
+  padding: 15px;
+}
+
+/* Grid Column */
+.dashboard-col-md-8 {
+  padding: 10px;
+}
+
+/* Stat Card Text */
+.dashboard-stat-card-text {
+  font-size: 13px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .dashboard-content {
+      width: 90%;
+  }
+
+  .dashboard-header {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+  }
+
+  .dashboard-header-right {
+      margin-top: 8px;
+  }
+
+  .dashboard-stats-grid {
+      align-items: center;
+      gap: 15px; /* ให้การ์ดมีระยะห่างที่ดีบนมือถือ */
+  }
+
+  .dashboard-stat-card {
+      width: 100%; /* ทำให้การ์ดขยายเต็มที่บนมือถือ */
+      max-width: 300px;
+  }
+}

@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"example.com/se/entity"
+	"github.com/Piyawat777/Final-Project/entity"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
@@ -29,42 +29,18 @@ func ConnectionDB() {
 func SetupDatabase() {
 
 	err := db.AutoMigrate(
-		&entity.Users{},
-		&entity.Genders{},
-		&entity.Tags{},
-		&entity.Categories{},
-		&entity.Privacies{},
-		&entity.Works{},
-		&entity.WorkTags{},
-		&entity.WorkIllustrations{},
-		&entity.Platforms{},
-		&entity.Contacts{},
-		&entity.Albums{},
-		&entity.AlbumWorks{},
-		&entity.Events{},
-		&entity.Prizes{},
-		&entity.Community{},
-		&entity.Post{},
-		&entity.Member{},
-		&entity.WorkLikes{},
-		&entity.Comments{},
-		&entity.Replies{},
-		&entity.ProductFiles{},
-		&entity.ProductExamples{},
-		&entity.ProductOptions{},
-		&entity.Products{},
-		&entity.ProductTags{},
-		&entity.Purchases{},
-		&entity.PurchaseGifts{},
-		&entity.PurchaseGalleries{},
-		&entity.Request{},
-		&entity.Respond{},
-		&entity.Faq{},
-		&entity.Question{},
-		&entity.Wallet{},
-		&entity.Paymentmethod{},
-		&entity.Transaction{},
-		&entity.Type{},
+		&entity.Amenity{},
+		&entity.Booking{},
+		&entity.User{},
+		&entity.Hotel{},
+		&entity.Invoice{},
+		&entity.Maintenance{},
+		&entity.Payment{},
+		&entity.Promotion{},
+		&entity.Review{},
+		&entity.Room{},
+		&entity.RoomImage{},
+		&entity.Staff{},
 	)
 
 	if err != nil {
@@ -95,17 +71,16 @@ func SetupDatabase() {
 	}
 
 	// Insert default user data
-	User := []entity.Users{
+	User := []entity.User{
 		{Username: "@A",
 			Name:         "A",
 			Email:        "A@g.com",
 			Password:     hashedPassword,
-			Description:  "นายA นามสมมุติ",
 			Birthday:     BirthDay,
 			ProfileImage: "https://i.pinimg.com/736x/1d/5c/74/1d5c74a0964dc147aca12dae6695ab26.jpg",
 			CoverImage:   "https://img.freepik.com/free-photo/abstract-studio-background-texture-light-blue-gray-gradient-wall-flat-floor-product_1258-88339.jpg?t=st=1737629944~exp=1737633544~hmac=097f29b58d3c426647a4db396e4bf4bed9377227b43da9816df44856302d133e&w=996",
 			GenderID:     2,
-			Status:       "admin",
+			Role:       "admin",
 		},
 		{Username: "@fourarm",
 			Name:         "fourarm",
@@ -120,7 +95,7 @@ func SetupDatabase() {
 		},
 	}
 	for _, pkg := range User {
-		db.FirstOrCreate(&pkg, entity.Users{Username: pkg.Username})
+		db.FirstOrCreate(&pkg, entity.User{Username: pkg.Username})
 	}
 
 	// Insert default tags
@@ -171,136 +146,4 @@ func SetupDatabase() {
 	for _, pkg := range Platform {
 		db.FirstOrCreate(&pkg, entity.Platforms{PlatformName: pkg.PlatformName})
 	}
-
-	//Request
-	Request := &entity.Request{
-		RequesttopicID: 2,
-		FirstName:      "Jieun",
-		LastName:       "Lee",
-		Email:          "iu@gmail.com",
-		Subject:        "ปัญหาการชำระเงิน",
-		MobilePhone:    "0987654321",
-		Message:        "ชำระเงิน...",
-	}
-
-	db.FirstOrCreate(Request, &entity.Request{
-		RequesttopicID: 2,
-		FirstName:      "Jieun",
-		LastName:       "Lee",
-		Email:          "iu@gmail.com",
-		Subject:        "ปัญหาการชำระเงิน",
-		MobilePhone:    "0987654321",
-		Message:        "ชำระเงิน...",
-	})
-
-	//Requesttopic
-	RequesttopicGeneral := entity.Requesttopic{Category: "General"}
-	RequesttopicPayment := entity.Requesttopic{Category: "Payment"}
-	RequesttopicReportingAnIssue := entity.Requesttopic{Category: "Reporting an Issue"}
-	db.FirstOrCreate(&RequesttopicGeneral, &entity.Requesttopic{Category: "General"})
-	db.FirstOrCreate(&RequesttopicPayment, &entity.Requesttopic{Category: "Payment"})
-	db.FirstOrCreate(&RequesttopicReportingAnIssue, &entity.Requesttopic{Category: "Reporting an Issue"})
-
-	//Faq
-	Faq := &entity.Faq{
-		UserID:         1,
-		RequesttopicID: 2,
-		Question:       "วิธีการชำระเงิน",
-		Respond:        "-ขั้นตอนแรก...",
-	}
-
-	db.FirstOrCreate(Faq, &entity.Faq{
-		UserID:         1,
-		RequesttopicID: 2,
-		Question:       "วิธีการชำระเงิน",
-		Respond:        "-ขั้นตอนแรก...",
-	})
-
-	Faq2 := &entity.Faq{
-		UserID:         1,
-		RequesttopicID: 3,
-		Question:       "วิธีแก้ไขโปรไฟล์",
-		Respond:        "-ขั้นตอนแรก...",
-	}
-
-	db.FirstOrCreate(Faq2, &entity.Faq{
-		UserID:         1,
-		RequesttopicID: 3,
-		Question:       "วิธีแก้ไขโปรไฟล์",
-		Respond:        "-ขั้นตอนแรก...",
-	})
-
-	//Question
-	Question := &entity.Question{
-		UserID:         2,
-		RequesttopicID: 2,
-		Title:          "ฉันจะชำระเงินได้อย่างไร",
-		Content:        "ฉันไม่สามารถชำระเงินได้ผ่านช่องทาง...",
-		Status:         "Answered",
-	}
-
-	db.FirstOrCreate(Question, &entity.Question{
-		UserID:         2,
-		RequesttopicID: 2,
-		Title:          "ฉันจะชำระเงินได้อย่างไร",
-		Content:        "ฉันไม่สามารถชำระเงินได้ผ่านช่องทาง...",
-		Status:         "Answered",
-	})
-
-	//Respond
-	Respond := &entity.Respond{
-		UserID:     1,
-		QuestionID: 1,
-		Respond:    "สวัสดีค่ะ จากปัญหาที่พบ คุณสามารถ...",
-	}
-
-	db.FirstOrCreate(Respond, &entity.Respond{
-		UserID:     1,
-		QuestionID: 1,
-		Respond:    "สวัสดีค่ะ จากปัญหาที่พบ คุณสามารถ...",
-	})
-
-	//Wallet
-	Wallet := &entity.Wallet{
-		UserID:  1,
-		Balance: 7777.77,
-	}
-
-	db.FirstOrCreate(Wallet, &entity.Wallet{
-		UserID:  1,
-		Balance: 7777.77,
-	})
-
-	//Transaction
-	PaymentmethodTrueMoney := entity.Paymentmethod{Name: "True Money"}
-
-	PaymentmethodKrungthaiBank := entity.Paymentmethod{Name: "Krungthai Bank"}
-
-	db.FirstOrCreate(&PaymentmethodTrueMoney, &entity.Paymentmethod{Name: "True Money"})
-
-	db.FirstOrCreate(&PaymentmethodKrungthaiBank, &entity.Paymentmethod{Name: "Krungthai Bank"})
-
-	TypeDeposit := entity.Type{Name: "Deposit"}
-
-	TypeTransfer := entity.Type{Name: "Transfer"}
-
-	db.FirstOrCreate(&TypeDeposit, &entity.Type{Name: "Deposit"})
-
-	db.FirstOrCreate(&TypeTransfer, &entity.Type{Name: "Transfer"})
-
-	Transaction := &entity.Transaction{
-		WalletID:        1,
-		TypeID:          2,
-		PaymentmethodID: 1,
-		AccountNumber:   "0987654321",
-		Amount:          777,
-	}
-
-	db.FirstOrCreate(Transaction, &entity.Transaction{
-		WalletID:        1,
-		TypeID:          2,
-		PaymentmethodID: 1,
-		AccountNumber:   "0987654321",
-		Amount:          777,
-	})
 }
